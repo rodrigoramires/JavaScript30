@@ -65,18 +65,18 @@
                   .filter((streetName) => streetName.includes('de'));
     }
 
-    // 7. sort Exercise
+    // 7. Sort Exercise
     // Sort the people alphabetically by last name
-    const alpha = people.sort((lastPerson, firstPerson) => {
-      [lastPersonLast, lastPersonFirst] = lastPerson.split(', ');
-      [firstPersonLast, firstPersonFirst] = firstPerson.split(', ');
-      return lastPersonLast < firstPersonLast ? -1 : 1;
+    const alpha = people.sort((a, b) => {
+      [aLastName, aFirstName] = a.split(', ');
+      [bLastName, bFirstName] = b.split(', ');
+      return aLastName < bLastName ? -1 : 1;
     });
     console.table(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
     const transportation = data.reduce((counterObject, item) => {
       if (!counterObject[item]) {
         counterObject[item] = 0;
