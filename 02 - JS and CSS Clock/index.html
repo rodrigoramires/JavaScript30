@@ -10,7 +10,7 @@
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
+        <div class="hand minute-hand"></div>
         <div class="hand second-hand"></div>
       </div>
     </div>
@@ -70,28 +70,31 @@
 
   </style>
   <script>
-  const secondHand = document.querySelector('.second-hand');
-  const minuteHand = document.querySelector('.min-hand');
-  const hourHand = document.querySelector('.hour-hand');
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector('.minute-hand');
+    const hourHand = document.querySelector('.hour-hand');
 
-  function setDate () {
-    const now = new Date();
-    const seconds = now.getSeconds();
-    const minutes = now.getMinutes();
-    const hours = now.getHours();
+    function setDate() {
+      const now = new Date();
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
 
-    const secondsDegrees = ((seconds / 60) * 360) + 90;
-    const minutesDegrees = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
-    const hoursDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;
+      const offsetDegress = 90;
+      const secondsDegrees = ((seconds / 60) * 360) + offsetDegress;
+      const secondsInfluenceInMinutesDegrees = ((seconds / 60) * 6);
+      const minutesDegrees = ((minutes / 60) * 360) + secondsInfluenceInMinutesDegrees + offsetDegress;
+      const minutesInfluenceInHoursDegrees = ((minutes / 60) * 30);
+      const hoursDegrees = ((hours / 12) * 360) + minutesInfluenceInHoursDegrees + offsetDegress;
 
-    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-    minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-    hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
-  }
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+    }
 
-  setInterval(setDate, 1000);
+    setInterval(setDate, 1000);
 
-  setDate();
+    setDate();
   </script>
 </body>
 </html>
