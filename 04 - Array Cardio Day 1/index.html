@@ -31,29 +31,33 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-    const fifteen = inventors.filter((inventor) => (inventor.year >= 1500 && inventor.year < 1600));
-    console.table(fifteen);
+    const inventorsBornIn1500s = inventors.filter((inventor) => inventor.year >= 1500 && inventor.year < 1600);
+    console.table(inventorsBornIn1500s);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    const fullNames = inventors.map((inventor) => `${inventor.first} ${inventor.last}`);
-    console.log(fullNames);
+    const inventorsFullnames = inventors.map((inventor) => `${inventor.first} ${inventor.last}`);
+    console.log(inventorsFullnames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    const ordered = inventors.sort((a, b) => a.year < b.year ? -1 : 1);
-    console.table(ordered);
+    const inventorsByBirthdateAscending = inventors.sort((a, b) => a.year < b.year ? -1 : 1);
+    console.table(inventorsByBirthdateAscending);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
-    const totalYears = inventors.reduce((total, inventor) => {
+    const inventorsTotalYearsLived = inventors.reduce((total, inventor) => {
       return total + (inventor.passed - inventor.year);
     }, 0);
-    console.log(totalYears);
+    console.log(inventorsTotalYearsLived);
 
     // 5. Sort the inventors by years lived
-    const oldest = inventors.sort((a, b) => (a.passed - a.year) > (b.passed - b.year) ? -1 : 1);
-    console.table(oldest);
+    const inventorsByYearsLivedAscending = inventors.sort((a, b) => {
+      const aYearsLived = a.passed - a.year;
+      const bYearsLived = b.passed - b.year;
+      return aYearsLived < bYearsLived ? -1 : 1;
+    });
+    console.table(inventorsByYearsLivedAscending);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -67,12 +71,18 @@
 
     // 7. Sort Exercise
     // Sort the people alphabetically by last name
-    const alpha = people.sort((a, b) => {
-      [aLastName, aFirstName] = a.split(', ');
-      [bLastName, bFirstName] = b.split(', ');
-      return aLastName < bLastName ? -1 : 1;
+    const peopleByLastnameAscending = people.sort((a, b) => {
+      const {aLastname, aFirstname} = a.toUpperCase().split(', ');
+      const {bLastname, bFirstname} = b.toUpperCase().split(', ');
+      if (aLastname < bLastname) {
+        return -1;
+      } else if (aLastname > bLastname) {
+        return 1;
+      } else {
+        return aFirstname < bFirstname ? -1 : 1;
+      }
     });
-    console.table(alpha);
+    console.table(peopleByLastnameAscending);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
