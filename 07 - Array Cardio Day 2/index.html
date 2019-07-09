@@ -8,14 +8,12 @@
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
     // ## Array Cardio Day 2
-
     const people = [
       { name: 'Wes', year: 1988 },
       { name: 'Kait', year: 1986 },
       { name: 'Irv', year: 1970 },
       { name: 'Lux', year: 2015 }
     ];
-
     const comments = [
       { text: 'Love this!', id: 523423 },
       { text: 'Super good', id: 823423 },
@@ -31,6 +29,7 @@
       return (currentYear - person.year) >= 19;
     });
     console.log({isAdult});
+
     // Array.prototype.every() // is everyone 19 or older?
     const allAdults = people.every(person => {
       const currentYear = (new Date()).getFullYear();
