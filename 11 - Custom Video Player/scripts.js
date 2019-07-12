@@ -9,8 +9,7 @@ const ranges = player.querySelectorAll('.player__slider');
 
 /* Build our functions */
 function togglePlay() {
-  const method = video.paused ? 'play' : 'pause';
-  video[method]();
+  (video.paused) ? video.play() : video.pause();
 }
 
 function updateButton() {
@@ -44,10 +43,10 @@ video.addEventListener('timeupdate', handleProgress);
 
 toggle.addEventListener('click', togglePlay);
 
-skipButtons.forEach(button => button.addEventListener('click', skip));
+skipButtons.forEach((skipButton) => skipButton.addEventListener('click', skip));
 
-ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
-ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
+ranges.forEach((range) => range.addEventListener('change', handleRangeUpdate));
+ranges.forEach((range) => range.addEventListener('mousemove', handleRangeUpdate));
 
 let mousedown = false;
 progress.addEventListener('click', scrub);
