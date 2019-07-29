@@ -17,7 +17,7 @@
     let name = 'Wes';
     let name2 = name;
     console.log(name, name2);
-    name = 'wesley';
+    name = 'Wesley';
     console.log(name, name2);
 
     // Let's say we have an array
@@ -29,6 +29,7 @@
 
     // You might think we can just do something like this:
     team[3] = 'Lux';
+    console.log(players, team);
 
     // however what happens when we update that array?
 
@@ -39,20 +40,23 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    const team2 = players.slice();
+    team2[3] = 'Fox';
+    console.log(players, team2);
 
     // one way
-    const team2 = players.slice();
 
     // or create a new array and concat the old one in
     const team3 = [].concat(players);
 
     // or use the new ES6 Spread
     const team4 = [...players];
+    team4[3] = 'Honey';
+    console.log(team4, players);
+
     const team5 = Array.from(players);
 
     // now when we update it, the original one isn't changed
-    team4[3] = 'heeee hawww';
-    console.log(team4);
 
     // The same thing goes for objects, let's say we have a person object
 
@@ -65,18 +69,14 @@
     // and think we make a copy:
     const captain = person;
     captain.number = 99;
-    console.log(person);
-    console.log(captain);
+    console.log(captain, person);
 
     // how do we take a copy instead?
-    const captain2 = Object.assign({}, person, { age: 12, color: 'blue' });
-    console.log(person);
-    console.log(captain2);
+    const captain2 = Object.assign({}, person, {number: 55, age: 12});
+    console.log(captain2, person);
 
     // We will hopefully soon see the object ...spread
     const captain3 = {...person};
-    console.log(person);
-    console.log(captain3);
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
     const wes = {
@@ -87,14 +87,18 @@
         facebook: 'wesbos.developer'
       }
     };
-
+    console.clear();
     console.log(wes);
 
     const dev = Object.assign({}, wes);
-    console.log(dev);
+    dev.name = 'Wesley';
+    dev.social.twitter = '@coolman';
+    console.log(dev, wes);
 
     const dev2 = JSON.parse(JSON.stringify(wes));
-    console.log(dev2);
+    dev2.name = 'Roxxane';
+    dev2.social.twitter = '@icewoman';
+    console.log(dev2, wes);
 
   </script>
 
